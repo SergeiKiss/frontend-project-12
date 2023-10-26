@@ -1,0 +1,19 @@
+{
+  "name": "@hexlet/code",
+  "version": "1.0.0",
+  "description": "[![Actions Status](https://github.com/SergeiKiss/frontend-project-12/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/SergeiKiss/frontend-project-12/actions)",
+  "main": "srs/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SergeiKiss/frontend-project-12.git"
+  },
+  "author": "SergeiKiss",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SergeiKiss/frontend-project-12/issues"
+  },
+  "homepage": "https://github.com/SergeiKiss/frontend-project-12#readme"
+}
