@@ -1,11 +1,13 @@
 {
   "name": "@hexlet/code",
   "version": "1.0.0",
-  "proxy": "http://localhost:5001",
   "description": "[![Actions Status](https://github.com/SergeiKiss/frontend-project-12/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/SergeiKiss/frontend-project-12/actions)",
   "main": "srs/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "npm run build --prefix frontend",
+    "start": "start-server -s ./frontend/build",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "cd frontend && npm ci"
   },
   "repository": {
     "type": "git",
