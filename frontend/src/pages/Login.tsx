@@ -1,10 +1,20 @@
 import { useEffect, useRef } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { Button, Form } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { ToastContainer, toast, Flip } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { loginUser, logoutUser } from "../redux/slices/user";
+import { loginBodyData } from "../api/userApi";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
 
 const LoginPage = () => {
+  const { username, token, isLoginSuccessful } = useAppSelector(
+    (state) => state.user,
+  );
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const inputRef = useRef<HTMLInputElement>(null);
   const validationSchema = yup.object().shape({
     username: yup
@@ -25,13 +35,31 @@ const LoginPage = () => {
     },
     validationSchema,
     onSubmit: (values) => {
-      console.log(values);
+      const { username, password } = values;
+      const loginBody: loginBodyData = { username, password };
+      dispatch(loginUser(loginBody));
     },
   });
   const { errors, touched } = formik;
+
   useEffect(() => {
+    if (isLoginSuccessful === false) {
+      toast.error("🦄 Wrong login or password", {
+        position: "bottom-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        transition: Flip,
+      });
+      dispatch(logoutUser());
+    }
+    if (username !== null && token !== null) navigate("/");
     if (inputRef.current) inputRef.current?.focus();
-  }, []);
+  }, [username, isLoginSuccessful]);
 
   return (
     <div className="container-fluid h-100">
@@ -94,6 +122,19 @@ const LoginPage = () => {
           </div>
         </div>
       </div>
+      <ToastContainer
+        position="bottom-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+        transition={Flip}
+      />
     </div>
   );
 };

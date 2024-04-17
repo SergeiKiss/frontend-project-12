@@ -2,6 +2,10 @@ install:
 	git pull
 	npm ci
 
+start-frontend-dev:
+	cd frontend; \
+	npm run dev
+
 start-backend:
 	npx start-server
 
