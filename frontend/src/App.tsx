@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 import { Route, Routes } from "react-router-dom";
 import LoginPage from "./pages/Login";
 import NotFoundPage from "./pages/NotFound";
-import MainPage from "./pages/Main";
+import ChatPage from "./pages/Chat";
 
 function App() {
   type routeObj = {
@@ -13,7 +13,7 @@ function App() {
   const router: Array<routeObj> = [
     {
       path: "/",
-      element: <MainPage />,
+      element: <ChatPage />,
     },
     {
       path: "/login",
