@@ -1,20 +1,18 @@
 install:
 	git pull
 	npm ci
-
-start-frontend-dev:
 	cd frontend; \
-	npm run dev
+	npm ci
 
 start-backend:
-	npx start-server
+	npm start
 
 build-frontend:
 	npm run build
 
-start-production:
-	npm run build
-	npm start
+start:
+	make build-frontend
+	make start-backend
 
 fix:
 	cd frontend; \
